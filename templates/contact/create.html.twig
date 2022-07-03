@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+
+    <div class="site-section my-40">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 mt-5 mb-5 mx-auto">
+                    <h2 class="text-center mb-md-3 text-3xl text-green-600">Contact</h2>
+                    {{ form_start(form) }}
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-3">
+                            {{ form_row(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-3">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12 mb-3 mb-md-3">
+                            {{ form_row(form.message, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-3">
+                            {{ form_row(form.pdfFiles, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" class="btn bg-blue-500 text-white">
+                        </div>
+                    </div>
+
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Contacts' %}
+
+{#{% block body_header %}#}
+{#    <section class="content-header">#}
+{#        <h1>#}
+{#            {{ 'List contacts' | trans }}#}
+{#        </h1>#}
+{#        <ol class="breadcrumb">#}
+{#            <li><a href="{{ path('home') }}"> Accueil</a></li>#}
+{#            <li class="active"><i class="fa fa-address-book"></i> {{ 'Contact management' | trans }}</li>#}
+{#        </ol>#}
+{#    </section>#}
+{#{% endblock body_header%}#}
+{% block body %}
+    <div class="box box-primary mt-40 container">
+        <div class="box-header">
+            <div class="row mb-md-3">
+                <div class="col-md-2">
+                    <a href="{{ path('contact.create') }}" class="btn btn-flat btn-success">{{ 'Add Contact' | trans }}&nbsp;<i class="fa fa-plus"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <table class="table table-bordered table-striped table-responsive text-center">
+                <thead>
+                <tr>
+                    <th>{{ 'First Name' | trans }}</th>
+                    <th>{{ 'Last Name' | trans }}</th>
+                    <th>{{ 'Email' | trans }}</th>
+                    <th>{{ 'Message' | trans }}</th>
+                    <th>{{ 'Your Book' | trans }}</th>
+                    <th>{{ 'CreatedAt' | trans }}</th>
+                    <th>{{ 'UpdatedAt' | trans }}</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for contact in pagination_contacts %}
+                    <tr>
+                        <td>{{ contact.firstName}}</td>
+                        <td>{{ contact.lastName}}</td>
+                        <td>{{ contact.email}}</td>
+                        <td>{{ contact.message}}</td>
+                        <td>
+                            {% for pdfFile in contact.uploadPdfFiles %}
+                                <a href="{{ asset('/upload_pdf_files/' ~ pdfFile.name) }}" target="_blank" class="text-red-600">
+                                    {{ pdfFile.name  }}
+                                </a><br />
+                            {% endfor %}
+                        </td>
+                        <td>{{ contact.createdAt | date("d/m/Y H:i:s")}}</td>
+                        <td>{{ contact.updatedAt | date("d/m/Y H:i:s")}}</td>
+                        <td class="text-align-center">
+
+                            <a href="{{ path('contact.delete',{id:contact.id}) }}"
+                               onclick="return confirm('Are you sure to delete this contact?')"><i class="fa-solid fa-person-circle-minus"  style="color:red !important;"></i></a>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    {% include 'includes/pagination.html.twig' with {'pagination': pagination_contacts} %}
+{% endblock body %}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="sm:w-3/5 w-4/5 mx-auto">
+        <h1 class="pt-20 sm:text-5xl md:text-7xl text-4xl font-bold text-center">
+            {{ book.title }}
+        </h1>
+
+        <div class="py-10 text-center">
+            <div class="inline-block sm:pt-1">
+                <h2 class="font-bold">
+                    Created by: Amare
+                </h2>
+
+                <p class="text-sm text-gray-600">
+                    {{ 'now' | date('d-m-Y') }}
+                </p>
+            </div>
+        </div>
+
+        <img
+                src="{{ book.imagePath }}"
+                class="rounded-xl w-full shadow-xl"
+                alt="Book Image"
+        />
+
+        <p class="text-xl py-6">
+            {{ book.description }}
+        </p>
+        <div>
+            {% for pdfFile in book.uploadPdfFiles %}
+                <a href="{{ asset('/upload_pdf_files/' ~ pdfFile.name) }}" target="_blank" class="text-red-600">
+                    {{ book.title  }} {{ loop.index }}
+                </a><br /><br />
+            {% endfor %}
+        </div>
+        <br />
+
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href={{ path('book.edit', {id: book.id})}} class="bg-green-500 font-bold py-2 px-4 rounded transition-all hover:bg-green-300">
+            Edit Book
+        </a>
+
+        <a
+                href={{ path('book.delete', { id: book.id}) }}
+                class="bg-red-500 font-bold py-2 px-4 ml-6 rounded transition-all hover:bg-red-300"
+                onclick="return confirm('Are you sure to delete this book?')">
+            Delete Book
+        </a>
+    {% endif %}
+    </div>
+
+{% endblock %}

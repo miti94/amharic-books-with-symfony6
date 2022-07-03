@@ -1,0 +1,22 @@
+<div class="count d-flex align-items-center justify-content-center" style="padding-top: 8px">
+    <b>
+        {{ 'Showing' | trans }}
+        {% if pagination.currentPageNumber == 1 %}
+            {{ pagination.currentPageNumber }}
+        {% else %}
+            {{ (pagination.currentPageNumber-1) * pagination.getItemNumberPerPage() }}
+        {% endif %}
+        {{'to'|trans}}
+        {% if pagination.currentPageNumber * pagination.getItemNumberPerPage() >  pagination.getTotalItemCount %}
+            {{ pagination.getTotalItemCount }}
+        {% else %}
+            {{ pagination.currentPageNumber * pagination.getItemNumberPerPage() }}
+        {% endif %}
+        {{'of' | trans }} {{ pagination.getTotalItemCount }} {{'entries' | trans}}
+    </b>
+</div>
+
+{# display navigation #}
+<div class="navigation d-flex align-items-center justify-content-center my-3">
+    {{ knp_pagination_render(pagination) }}
+</div>
