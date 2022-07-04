@@ -15,7 +15,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "start": "node index.js",
+        "start": "node app.js",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "webpack -d --watch --config ./webpack.config.js --display-error-details",
