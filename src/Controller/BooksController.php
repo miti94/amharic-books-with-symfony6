@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-#[Route('books')]
+//#[Route('books')]
 class BooksController extends AbstractController
 {
 //    #[Route('/books/{name}', name: 'app_books', defaults: ['name' => 'null'], methods: ['GET', 'HEAD'])]
@@ -93,7 +93,7 @@ class BooksController extends AbstractController
         return $this->render('books/index.html.twig', compact('pagination_books'));
     }
 
-    #[Route('/create', name: 'book.create'), IsGranted('ROLE_ADMIN')]
+    #[Route('/books/create', name: 'book.create'), IsGranted('ROLE_ADMIN')]
     public function create(Request $request, SluggerInterface $slugger) : Response
     {
         $book = new Book();
@@ -150,7 +150,7 @@ class BooksController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'book.show', methods: 'GET')]
+    #[Route('/books/{id}', name: 'book.show', methods: 'GET')]
     public function show($id) : Response
     {
         $book = $this->bookRepository->find($id);
@@ -160,7 +160,7 @@ class BooksController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{id?0}', name: 'book.edit'), IsGranted('ROLE_ADMIN')]
+    #[Route('/books/edit/{id?0}', name: 'book.edit'), IsGranted('ROLE_ADMIN')]
     public function edit($id, Request $request, SluggerInterface $slugger): Response
     {
 
@@ -243,7 +243,7 @@ class BooksController extends AbstractController
         ]);
     }
 
-    #[Route('/delete/{id}', name: 'book.delete', methods: ['GET', 'DELETE']), IsGranted('ROLE_ADMIN')]
+    #[Route('/books/delete/{id}', name: 'book.delete', methods: ['GET', 'DELETE']), IsGranted('ROLE_ADMIN')]
     public function delete($id) : Response
     {
         $book = $this->bookRepository->find($id);
