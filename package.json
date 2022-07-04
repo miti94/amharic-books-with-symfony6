@@ -18,8 +18,7 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress",
-        "heroku-postbuild": "webpack -p --config ./webpack.config.js && php bin/console d:s:u --force"
+        "build": "encore production --progress"
     },
     "engines": {
         "node": "v16.13.*",
