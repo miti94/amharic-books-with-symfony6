@@ -15,6 +15,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "start": "node index.js",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
