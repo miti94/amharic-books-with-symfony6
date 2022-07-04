@@ -1,2 +1,2 @@
 'web: heroku-php-apache2 public/' 
-web: npm start
+'web: npm start'
