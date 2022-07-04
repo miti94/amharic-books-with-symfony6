@@ -15,7 +15,7 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "start": "node assets/app.js",
+        "start": "node ./assets/app.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
